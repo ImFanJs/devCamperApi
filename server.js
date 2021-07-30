@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 // eslint-disable-next-line no-unused-vars
 const colors = require('colors');
+const errorHandler = require('./middlewares/errorHandler');
 const connectDB = require('./config/db');
 
 // Load environment variables
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Add routes
 app.use('/api/v1/bootcamps', bootcamps);
+app.use(errorHandler);
 
 // Start server
 const server = app.listen(
